@@ -39,6 +39,10 @@ def generate_progress_bar(frac: float, _len=15) -> str:
     _len -= 2 # subtract beginning and end characters
     num_chars2frac = [ x/_len for x in range(_len+1) ] # [ 0, 1/len, 2/len, ... len/len=1 ]
     num_chars = closest_element_index(num_chars2frac, frac) # round `frac` to the nearest character length fraction
+    if num_chars == 0 and frac > 0:
+        num_chars = 1
+    if num_chars == _len and frac < 1:
+        num_chars = _len-1
     progress_bar = '[' + ('#' * num_chars) + (' ' * (_len - num_chars)) + ']'
     return progress_bar
 
