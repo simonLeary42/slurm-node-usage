@@ -216,7 +216,7 @@ class SlurmNodeUsageAnalyzer:
             if usage["total_gpus"] > 0:
                 num_free_gpus = usage["total_gpus"] - usage["alloc_gpus"]
                 free_gpu_frac = num_free_gpus / usage["total_gpus"]
-                gpu_usage = f"{generate_progress_bar(free_gpu_frac)} {usage['alloc_gpus']}/{usage['total_gpus']}"
+                gpu_usage = f"{generate_progress_bar(free_gpu_frac)} {num_free_gpus}/{usage['total_gpus']}"
             else:
                 gpu_usage = ""
             partitions_to_access = ",".join(self.node_partitions_that_I_can_access(node))
